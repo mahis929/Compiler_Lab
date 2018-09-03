@@ -6,7 +6,7 @@ int c,d,bo=0,bc=0;
 %}
 
 operand [a-zA-Z0-9]+
-operator [+\-\/*]
+operator [+\-\/\*]
 
 %%
 
