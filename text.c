@@ -4,9 +4,7 @@ int main()
     //Heyskdds
     for(int i = 0; i < 10; i++)
     {
-        /*
-        asasasa
-        */
+        //aasasas
         cout<<i<<"\n";
     }
     return 0;

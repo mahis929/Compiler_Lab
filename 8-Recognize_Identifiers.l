@@ -27,12 +27,7 @@ TYPE int|char|bool|float|void|for|do|while|if|else|return|void|case|default|prin
 
 int main()
 {
-	FILE *fp;
-	char file[10];
-	printf("\nEnter the filename: ");
-	scanf("%s", file);
-	fp=fopen(file,"r");
-	yyin=fp;
+	yyin=("text.txt", "r");
 	yylex();
 	printf("Total identifiers are: %d\n", count);
 	return 0;
