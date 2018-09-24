@@ -373,14 +373,14 @@ static const YY_CHAR yy_ec[256] =
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    2,    2,    2,
         2,    2,    2,    2,    2,    2,    2,    1,    1,    1,
-        1,    1,    1,    1,    2,    2,    2,    2,    2,    2,
-        2,    2,    2,    2,    2,    2,    2,    2,    2,    2,
-        2,    2,    2,    2,    2,    2,    2,    2,    2,    2,
-        1,    1,    1,    1,    1,    1,    2,    2,    2,    2,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
 
-        2,    2,    2,    2,    2,    2,    2,    2,    2,    2,
-        2,    2,    2,    2,    2,    2,    2,    2,    2,    2,
-        2,    2,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
+        1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
         1,    1,    1,    1,    1,    1,    1,    1,    1,    1,
@@ -436,10 +436,10 @@ int yy_flex_debug = 0;
 #define YY_MORE_ADJ 0
 #define YY_RESTORE_YY_MORE_OFFSET
 char *yytext;
-#line 1 "12-Longest_word_reverse.l"
-#line 2 "12-Longest_word_reverse.l"
-int len = 0;
-char *ch;
+#line 1 "13-Odd_Even.l"
+#line 2 "13-Odd_Even.l"
+#include<stdio.h>
+FILE *odd, *even;
 #line 444 "lex.yy.c"
 #line 445 "lex.yy.c"
 
@@ -658,7 +658,7 @@ YY_DECL
 		}
 
 	{
-#line 6 "12-Longest_word_reverse.l"
+#line 6 "13-Odd_Even.l"
 
 
 #line 665 "lex.yy.c"
@@ -720,21 +720,29 @@ do_action:	/* This label is used only to access EOF actions. */
 
 case 1:
 YY_RULE_SETUP
-#line 8 "12-Longest_word_reverse.l"
+#line 8 "13-Odd_Even.l"
 {
-	if(yyleng > len)
+	int number = 0;
+	for(int i = 0; i < yyleng; i++)
 	{
-		ch = yytext;
-		len = yyleng;
+		number = number*10 + (yytext[i]-'0');
+	}
+	if(number%2 == 0)
+	{
+		fprintf(even, "%d ", number);
+	}
+	else
+	{
+		fprintf(odd, "%d ", number);	
 	}
 }
 	YY_BREAK
 case 2:
 YY_RULE_SETUP
-#line 16 "12-Longest_word_reverse.l"
+#line 24 "13-Odd_Even.l"
 ECHO;
 	YY_BREAK
-#line 738 "lex.yy.c"
+#line 746 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1739,17 +1747,14 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 16 "12-Longest_word_reverse.l"
+#line 24 "13-Odd_Even.l"
 
 
 int main()
 {
-	yyin = fopen("in.txt", "r");
+	yyin = fopen("input.txt", "r");
+	odd = fopen("odd.txt", "w+");
+	even = fopen("even.txt", "w+");
 	yylex();
-	for(int i = len-1; i >= 0; i--)
-	{
-		printf("%c",ch[i]);
-	}
-	printf("\n");
 	return 0;
 }

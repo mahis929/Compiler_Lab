@@ -1,7 +1,7 @@
 %{
 int k = 0;
 int b = 1;
-int len;
+int len = 0;
 %}
 
 %%
